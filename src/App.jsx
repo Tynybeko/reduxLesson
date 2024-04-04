@@ -23,6 +23,7 @@ function App() {
       <div>
         <Block1 />
         <Block2 />
+        <h1>Hello</h1>
 
         <form onSubmit={handleSubmit} action="">
           <input name='name' type="text" />
