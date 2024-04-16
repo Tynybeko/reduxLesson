@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Block1 from './components/Block1'
 import Block2 from './components/Block2'
 import { useDispatch, useSelector } from 'react-redux'
-import { todoActions } from './redux/slices/todo'
+import { FetchAllFood, todoActions } from './redux/slices/todo'
+import { useEffect } from 'react'
+
+
 function App() {
   const dispatch = useDispatch()
   console.log(todoActions.add);
@@ -14,9 +14,14 @@ function App() {
     const formData = new FormData(e.target)
     let data = Object.fromEntries(formData.entries())
     data.id = Math.random()
-    dispatch({type: 'todo/add', payload: data})
+    dispatch({ type: 'todo/add', payload: data })
     e.target.reset()
   }
+
+  useEffect(() => {
+    dispatch(FetchAllFood(1234))
+  }, [])
+
 
   return (
     <>
@@ -24,7 +29,6 @@ function App() {
         <Block1 />
         <Block2 />
         <h1>Hello</h1>
-
         <form onSubmit={handleSubmit} action="">
           <input name='name' type="text" />
           <input name='age' type="number" />
